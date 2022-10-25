@@ -52,7 +52,7 @@ class RatingController extends Controller
      * @param  int  $id
      * @return RatingResource
      */
-    public function show(Rating $rating)
+    public function show( Subject $subject, Rating $rating)
     {
         return new RatingResource($rating);
     }
@@ -64,7 +64,7 @@ class RatingController extends Controller
      * @param  int  $id
      * @return RatingResource
      */
-    public function update(Request $request, Rating $rating)
+    public function update(Request $request, Subject $subject, Rating $rating)
     {
         $validated = $request->validate([
             'subject_rating' => 'required|integer|min:1|max:5',
@@ -82,7 +82,7 @@ class RatingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rating $rating)
+    public function destroy( Subject $subject, Rating $rating)
     {
         $rating->delete();
         return response(null, Response::HTTP_NO_CONTENT);

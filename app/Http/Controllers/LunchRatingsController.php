@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\LunchRating;
+use App\Models\School;
 use Illuminate\Http\Request;
 use App\Http\Resources\LunchRatingResource;
 use Symfony\Component\HttpFoundation\Response;
@@ -49,7 +50,7 @@ class LunchRatingsController extends Controller
      * @param  \App\Models\LunchRating  $lunchRating
      * @return LunchRatingResource
      */
-    public function show(LunchRating $lunchRating)
+    public function show(School $school, LunchRating $lunchRating)
     {
         return new LunchRatingResource($lunchRating);
     }
@@ -62,7 +63,7 @@ class LunchRatingsController extends Controller
      * @param  \App\Models\LunchRating  $lunchRating
      * @return LunchRatingResource
      */
-    public function update(Request $request, LunchRating $lunchRating)
+    public function update(Request $request,School $school, LunchRating $lunchRating)
     {
         $validated = $request->validate([
             'food_rating' => 'required|integer|min:1|max:5',
@@ -80,7 +81,7 @@ class LunchRatingsController extends Controller
      * @param  \App\Models\LunchRating  $lunchRating
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LunchRating $lunchRating)
+    public function destroy(School $school, LunchRating $lunchRating)
     {
         $lunchRating->delete();
         return response(null, Response::HTTP_NO_CONTENT);

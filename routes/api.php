@@ -42,5 +42,7 @@ Route::resource('fields', FieldsController::class);
 Route::resource('subjects', SubjectsController::class);
 Route::resource('lunches', LunchesController::class);
 
-Route::resource('subjects/{subject}/ratings', RatingController::class);
-Route::resource('lunches/{lunch}/ratings', LunchRatingsController::class);
+//Route::resource('subjects/{subject}/ratings', RatingController::class);
+
+Route::resource('subjects.ratings', RatingController::class);
+Route::resource('lunches.ratings', LunchRatingsController::class);
