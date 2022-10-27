@@ -46,3 +46,5 @@ Route::resource('lunches', LunchesController::class);
 
 Route::resource('subjects.ratings', RatingController::class);
 Route::resource('lunches.ratings', LunchRatingsController::class);
+
+Route::post('image',[\App\Http\Controllers\SchoolImageController::class, 'imageStore']);

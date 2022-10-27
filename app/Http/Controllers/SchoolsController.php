@@ -26,18 +26,34 @@ class SchoolsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return SchoolResource
+     * @return string
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'address' => 'required|string',
+
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
             'type' => 'required'
         ]);
 
-        $school = School::create($validated);
-        return new SchoolResource($school);
+        if ($request->hasFile('file')) {
+            $request->validate([
+                'image' => 'mimes:jpeg,bmp,png,svg,jpg'
+            ]);
+
+            $request->image->store('school', 'public');
+
+            $school = new School([
+                "name" => $request->get('name'),
+                "address" => $request->get('address'),
+                "type" => $request->get('type'),
+                "file_path" => $request->file->hashName()
+            ]);
+            $school->save();
+            return response($school);
+        }
+
     }
 
     /**
