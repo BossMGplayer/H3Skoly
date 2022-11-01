@@ -16,8 +16,11 @@ class CreateLunchesTable extends Migration
         Schema::create('lunches', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('school_id');
+            $table->string('file_path');
             $table->string('name');
             $table->timestamps();
+
+            $table->index('school_id');
         });
     }
 

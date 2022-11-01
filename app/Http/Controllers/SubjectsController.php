@@ -26,16 +26,32 @@ class SubjectsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return SubjectResource
+     * @return Subject
      */
     public function store(Request $request)
     {
-        $subject = Subject::create([
-            'field_id' => $request->field_id,
-            'name' => $request->name,
+        $request->validate([
+            'name' => 'required',
+            'field_id' => 'required'
         ]);
 
-        return new SubjectResource($subject);
+        if ($request->hasFile('image')) {
+
+            $request->validate([
+                'image' => 'mimes:jpeg,bmp,png,jpg'
+            ]);
+
+            $request->image->store('images', 'public');
+
+            $subject = new Subject([
+                "name" => $request->get('name'),
+                "field_id" => $request->get('field_id'),
+                "file_path" => $request->image->hashName()
+            ]);
+            $subject->save();
+        }
+
+        return $subject;
     }
 
     /**

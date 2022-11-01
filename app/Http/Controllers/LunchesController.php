@@ -24,16 +24,32 @@ class LunchesController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return LunchResource
+     * @return Lunch
      */
     public function store(Request $request)
     {
-        $lunch = Lunch::create([
-            'school_id' => $request->school_id,
-            'name' => $request->name,
+        $request->validate([
+            'name' => 'required',
+            'school_id' => 'required'
         ]);
 
-        return new LunchResource($lunch);
+        if ($request->hasFile('image')) {
+
+            $request->validate([
+                'image' => 'mimes:jpeg,bmp,png,jpg'
+            ]);
+
+            $request->image->store('images', 'public');
+
+            $lunch = new Lunch([
+                "name" => $request->get('name'),
+                "school_id" => $request->get('school_id'),
+                "file_path" => $request->image->hashName()
+            ]);
+            $lunch->save();
+        }
+
+        return $lunch;
     }
 
     /**

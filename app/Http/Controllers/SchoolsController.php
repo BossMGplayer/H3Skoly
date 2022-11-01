@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\SchoolResource;
 use App\Models\School;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 
 class SchoolsController extends Controller
@@ -12,7 +13,7 @@ class SchoolsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return School
      */
     public function index()
     {
@@ -26,18 +27,34 @@ class SchoolsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return SchoolResource
+     * @return School
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'address' => 'required|string',
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
             'type' => 'required'
         ]);
 
-        $school = School::create($validated);
-        return new SchoolResource($school);
+        if ($request->hasFile('image')) {
+
+            $request->validate([
+                'image' => 'mimes:jpeg,bmp,png,jpg'
+            ]);
+
+            $request->image->store('images', 'public');
+
+            $school = new School([
+                "name" => $request->get('name'),
+                "address" => $request->get('address'),
+                "type" => $request->get('type'),
+                "file_path" => $request->image->hashName()
+            ]);
+            $school->save();
+        }
+
+        return $school;
     }
 
     /**

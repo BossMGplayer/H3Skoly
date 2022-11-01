@@ -16,9 +16,11 @@ class CreateFieldsTable extends Migration
         Schema::create('fields', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('file_path');
             $table->unsignedBigInteger('school_id');
-            $table->index('school_id');
             $table->timestamps();
+
+            $table->index('school_id');
         });
     }
 

@@ -47,7 +47,7 @@ class LunchRatingsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\LunchRating  $lunchRating
+     * @param  int  $id
      * @return LunchRatingResource
      */
     public function show(School $school, LunchRating $lunchRating)
@@ -60,7 +60,7 @@ class LunchRatingsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\LunchRating  $lunchRating
+     * @param  int  $id
      * @return LunchRatingResource
      */
     public function update(Request $request,School $school, LunchRating $lunchRating)
@@ -78,7 +78,7 @@ class LunchRatingsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\LunchRating  $lunchRating
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(School $school, LunchRating $lunchRating)

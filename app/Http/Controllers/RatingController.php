@@ -52,7 +52,7 @@ class RatingController extends Controller
      * @param  int  $id
      * @return RatingResource
      */
-    public function show( Subject $subject, Rating $rating)
+    public function show(Subject $subject, Rating $rating)
     {
         return new RatingResource($rating);
     }

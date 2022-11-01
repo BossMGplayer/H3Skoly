@@ -18,6 +18,7 @@ class CreateSchoolsTable extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('type');
+            $table->string('file_path');
             $table->timestamps();
         });
     }

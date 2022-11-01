@@ -9,7 +9,7 @@ class Field extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'school_id'];
+    protected $fillable = ['name', 'school_id','file_path'];
 
     public function subjects()
     {

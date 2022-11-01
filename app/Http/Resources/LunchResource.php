@@ -17,6 +17,7 @@ class LunchResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'file_path' => $this->file_path,
             'average_rating' => $this->averageRating(),
             'ratings' => $this->ratings,
             'created_at' => (string) $this->created_at,

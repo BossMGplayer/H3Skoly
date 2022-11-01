@@ -14,7 +14,15 @@ class SchoolResource extends JsonResource
      */
      public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'file_path' => $this->file_path,
+            'address' => $this->address,
+            'type' => $this->type,
+            'created_at' => (string) $this->created_at,
+            'updated_at' => (string) $this->updated_at,
+        ];
     }
 
 }

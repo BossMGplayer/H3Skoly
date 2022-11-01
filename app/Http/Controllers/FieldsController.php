@@ -27,17 +27,33 @@ class FieldsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return FieldResource
+     * @return Field
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'school_id' => 'required',
+        $request->validate([
+            'name' => 'required',
+            'school_id' => 'required'
         ]);
 
-        $fields = Field::create($validated);
-        return new FieldResource($fields);
+        if ($request->hasFile('image')) {
+
+            $request->validate([
+                'image' => 'mimes:jpeg,bmp,png,jpg'
+            ]);
+
+            $request->image->store('images', 'public');
+
+            $field = new Field([
+                "name" => $request->get('name'),
+                "address" => $request->get('address'),
+                "type" => $request->get('type'),
+                "file_path" => $request->image->hashName()
+            ]);
+            $field->save();
+        }
+
+        return $field;
     }
 
     /**

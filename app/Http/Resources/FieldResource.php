@@ -18,6 +18,7 @@ class FieldResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'file_path' => $this->file_path,
             'school_id' => $this->school_id,
             'created_at' => (string) $this->created_at,
             'updated_at' => (string) $this->updated_at,
