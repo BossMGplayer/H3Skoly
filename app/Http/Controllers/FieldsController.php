@@ -33,21 +33,20 @@ class FieldsController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'school_id' => 'required'
+            'school_id' => 'required',
         ]);
 
         if ($request->hasFile('image')) {
 
             $request->validate([
-                'image' => 'mimes:jpeg,bmp,png,jpg'
+                'image' => 'required|image|max:2048',
             ]);
 
             $request->image->store('images', 'public');
 
             $field = new Field([
                 "name" => $request->get('name'),
-                "address" => $request->get('address'),
-                "type" => $request->get('type'),
+                "school_id" => $request->get('school_id'),
                 "file_path" => $request->image->hashName()
             ]);
             $field->save();

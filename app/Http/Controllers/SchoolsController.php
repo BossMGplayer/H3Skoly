@@ -40,8 +40,9 @@ class SchoolsController extends Controller
         if ($request->hasFile('image')) {
 
             $request->validate([
-                'image' => 'mimes:jpeg,bmp,png,jpg'
+                'image' => 'required|mimes:jpg,png,jpeg,svg|max:2048',
             ]);
+
 
             $request->image->store('images', 'public');
 

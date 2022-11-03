@@ -38,7 +38,7 @@ class SubjectsController extends Controller
         if ($request->hasFile('image')) {
 
             $request->validate([
-                'image' => 'mimes:jpeg,bmp,png,jpg'
+                'image' => 'required|image|max:2048',
             ]);
 
             $request->image->store('images', 'public');
