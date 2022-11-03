@@ -54,7 +54,6 @@ class SchoolsController extends Controller
             ]);
             $school->save();
         }
-
         return $school;
     }
 
