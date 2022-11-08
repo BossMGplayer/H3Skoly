@@ -16,6 +16,7 @@ class LunchRatingResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'lunch_id' => $this->lunch_id,
             'food_rating' => $this->food_rating,
             'hygiene_rating' => $this->hygiene_rating,
             'food_variations_rating' => $this->food_variations_rating,
