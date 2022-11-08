@@ -25,10 +25,10 @@
                         <a href="/admin" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Home</a>
                     </li>
                     <li>
-                        <a href="/allSchools" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Všetky školy</a>
+                        <a href="/allFields" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Všetky odbory</a>
                     </li>
                     <li>
-                        <a href="/manageSchools" class="block py-2 pr-4 pl-3 text-blue-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Správa škôl</a>
+                        <a href="/manageFields" class="block py-2 pr-4 pl-3 text-blue-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Správa odborov</a>
                     </li>
                 </ul>
             </div>
@@ -36,26 +36,20 @@
 </header>
 
 <div style="padding-left: 50px">
-    <p class="text-3xl">Add new School</p>
+    <p class="text-3xl">Add new Field</p>
 
-    <form method="post" action="/api/schools" enctype="multipart/form-data">
+    <form method="post" action="/api/fields" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="form-group row pt-2">
-            <label for="nameid" class="col-sm-3 col-form-label">School name:</label>
+            <label for="nameid" class="col-sm-3 col-form-label">Field name:</label>
             <div class="col-sm-9">
-                <input name="name" type="text" class="form-control" id="nameid" placeholder="School name">
+                <input name="name" type="text" class="form-control" id="nameid" placeholder="Field name">
             </div>
         </div>
         <div class="form-group row pt-2">
-            <label for="addressid" class="col-sm-3 col-form-label">Address:</label>
+            <label for="schoolidid" class="col-sm-3 col-form-label">School id:</label>
             <div class="col-sm-9">
-                <input name="address" type="text" class="form-control" id="addressid" placeholder="Address">
-            </div>
-        </div>
-        <div class="form-group row pt-2">
-            <label for="typeid" class="col-sm-3 col-form-label">Type:</label>
-            <div class="col-sm-9">
-                <input name="type" type="text" class="form-control" id="typeid" placeholder="Release Date">
+                <input name="school_id" type="number" class="form-control" id="schoolidid" placeholder="School id">
             </div>
         </div>
         <div class="form-group row pt-2">
@@ -72,24 +66,5 @@
         </div>
     </form>
 </div>
-
-<div style="padding-left: 50px; padding-top: 50px">
-    <p class="text-3xl">Delete school by id</p>
-
-    <form method="post" action="{{url('school-delete')}}" enctype="multipart/form-data">
-        {{ csrf_field() }}
-        {{ method_field('DELETE') }}
-        <div class="form-group row pt-2">
-            <label for="schoolid" class="col-sm-3 col-form-label">School id:</label>
-            <div class="col-sm-9">
-                <input name="id" type="number" class="form-control" id="schoolid" placeholder="School id">
-            </div>
-        </div>
-        <div class="offset-sm-3 col-sm-9 pt-2">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit" value="delete">
-                Button
-            </button>
-        </div>
-    </form>
 </div>
 </html>

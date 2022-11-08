@@ -24,19 +24,19 @@
             <a href="{{'/allSchools'}}" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-blue-500 hover:border-blue-500 dark:hover:text-blue-500">Školy</a>
         </li>
         <li class="mr-2">
-            <a href="#" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-blue-500 hover:border-blue-500 dark:hover:text-blue-500">Odbory</a>
+            <a href="/allFields" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-blue-500 hover:border-blue-500 dark:hover:text-blue-500">Odbory</a>
         </li>
         <li class="mr-2">
-            <a href="#" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-blue-500 hover:border-blue-500 dark:hover:text-blue-500">Predmety</a>
+            <a href="/allSubjects" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-blue-500 hover:border-blue-500 dark:hover:text-blue-500">Predmety</a>
         </li>
         <li class="mr-2">
-            <a href="#" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-blue-500 hover:border-blue-500 dark:hover:text-blue-500">Obedy</a>
+            <a href="/allLunches" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-blue-500 hover:border-blue-500 dark:hover:text-blue-500">Obedy</a>
         </li>
         <li class="mr-2">
-            <a href="#" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-blue-500 hover:border-blue-500 dark:hover:text-blue-500">Hodnotenia obedov</a>
+            <a href="/allLunchRatings" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-blue-500 hover:border-blue-500 dark:hover:text-blue-500">Hodnotenia obedov</a>
         </li>
         <li class="mr-2">
-            <a href="#" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-blue-500 hover:border-blue-500 dark:hover:text-blue-500">Hodnotenia predmetov</a>
+            <a href="/allRatings" class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-blue-500 hover:border-blue-500 dark:hover:text-blue-500">Hodnotenia predmetov</a>
         </li>
     </ul>
 </div>
