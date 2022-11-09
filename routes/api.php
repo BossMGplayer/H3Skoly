@@ -8,7 +8,7 @@ use App\Http\Controllers\FieldsController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\LunchesController;
 use App\Http\Controllers\RatingController;
-use App\Http\Controllers\LunchRatingsController;
+use App\Http\Controllers\LunchRatingController;
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -30,6 +30,5 @@ Route::resource('schools', SchoolsController::class);
 Route::resource('fields', FieldsController::class);
 Route::resource('subjects', SubjectsController::class);
 Route::resource('lunches', LunchesController::class);
-
 Route::resource('subjects.ratings', RatingController::class);
-Route::resource('lunches.ratings', LunchRatingsController::class);
+Route::resource('lunches.ratings', LunchRatingController::class);

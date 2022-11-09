@@ -36,7 +36,7 @@ class RatingController extends Controller
             'subject_rating' => 'required|integer|min:1|max:5',
             'teacher_rating' => 'required|integer|min:1|max:5',
             'knowledge_rating' => 'required|integer|min:1|max:5',
-            'comment' => 'string',
+            'comment' => 'text',
             'subject_id' => 'required',
 
             ['rating' => $request->rating]
@@ -70,6 +70,7 @@ class RatingController extends Controller
             'subject_rating' => 'required|integer|min:1|max:5',
             'teacher_rating' => 'required|integer|min:1|max:5',
             'knowledge_rating' => 'required|integer|min:1|max:5',
+            'comment' => 'text',
         ]);
 
         $rating->update($validated);
@@ -82,7 +83,7 @@ class RatingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy( Subject $subject, Rating $rating)
+    public function destroy(Subject $subject, Rating $rating)
     {
         $rating->delete();
         return response(null, Response::HTTP_NO_CONTENT);
