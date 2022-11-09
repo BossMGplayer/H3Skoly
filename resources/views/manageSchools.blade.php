@@ -55,7 +55,7 @@
         <div class="form-group row pt-2">
             <label for="typeid" class="col-sm-3 col-form-label">Type:</label>
             <div class="col-sm-9">
-                <input name="type" type="text" class="form-control" id="typeid" placeholder="Release Date">
+                <input name="type" type="text" class="form-control" id="typeid" placeholder="School type">
             </div>
         </div>
         <div class="form-group row pt-2">
@@ -67,28 +67,8 @@
         </div>
         <div class="offset-sm-3 col-sm-9 pt-2">
                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
-                    Button
+                    Submit
                 </button>
-        </div>
-    </form>
-</div>
-
-<div style="padding-left: 50px; padding-top: 50px">
-    <p class="text-3xl">Delete school by id</p>
-
-    <form method="post" action="{{url('school-delete')}}" enctype="multipart/form-data">
-        {{ csrf_field() }}
-        {{ method_field('DELETE') }}
-        <div class="form-group row pt-2">
-            <label for="schoolid" class="col-sm-3 col-form-label">School id:</label>
-            <div class="col-sm-9">
-                <input name="id" type="number" class="form-control" id="schoolid" placeholder="School id">
-            </div>
-        </div>
-        <div class="offset-sm-3 col-sm-9 pt-2">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit" value="delete">
-                Button
-            </button>
         </div>
     </form>
 </div>

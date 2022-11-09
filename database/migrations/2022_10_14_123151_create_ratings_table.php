@@ -21,6 +21,8 @@ class CreateRatingsTable extends Migration
             $table->unsignedInteger('knowledge_rating');
             $table->text('comment')->nullable();
             $table->timestamps();
+
+            $table->index('subject_id');
         });
     }
 

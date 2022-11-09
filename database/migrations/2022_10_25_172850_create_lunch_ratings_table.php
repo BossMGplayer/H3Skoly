@@ -21,6 +21,8 @@ class CreateLunchRatingsTable extends Migration
             $table->unsignedInteger('food_variations_rating');
             $table->text('comment')->nullable();
             $table->timestamps();
+
+            $table->index('lunch_id');
         });
     }
 
