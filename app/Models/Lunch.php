@@ -22,7 +22,7 @@ class Lunch extends Model
     }
 
     /**
-     * Calculate the average rating of a teacher
+     * Calculate the average rating of food
      *
      * @return integer
      */
@@ -42,7 +42,7 @@ class Lunch extends Model
     }
 
     /**
-     * Calculate the average rating of a subject
+     * Calculate the average rating of hygiene
      *
      * @return integer
      */
@@ -62,7 +62,7 @@ class Lunch extends Model
     }
 
     /**
-     * Calculate the average rating on knowlegde
+     * Calculate the average rating on food variety
      *
      * @return integer
      */
@@ -82,7 +82,7 @@ class Lunch extends Model
     }
 
     /**
-     * Calculate the average rating on a subject
+     * Calculate the average rating
      *
      * @return integer
      */

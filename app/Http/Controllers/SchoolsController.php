@@ -23,6 +23,12 @@ class SchoolsController extends Controller
         return $school;
     }
 
+    public function indexWeb()
+    {
+        $school = School::orderBy('created_at', 'asc')->get();
+        return view('allSchools', compact('school'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -98,6 +104,7 @@ class SchoolsController extends Controller
      */
     public function destroy(School $school)
     {
+        //$school->School::findOrFail($id);
         $school->delete();
         return response(null, Response::HTTP_NO_CONTENT);
     }
