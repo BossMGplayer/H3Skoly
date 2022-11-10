@@ -26,26 +26,6 @@ class Lunch extends Model
      *
      * @return integer
      */
-    public function averageFoodRating()
-    {
-        $ratings = $this->ratings;
-
-        if (!$ratings->isEmpty()) {
-            $sum = 0;
-
-            foreach ($ratings as $rating) {
-                $sum += $rating->food_rating;
-            }
-            $averageFoodRating = $sum / $ratings->count();
-            return $averageFoodRating;
-        }
-    }
-
-    /**
-     * Calculate the average rating of hygiene
-     *
-     * @return integer
-     */
     public function averageHygieneRating()
     {
         $ratings = $this->ratings;
@@ -62,6 +42,26 @@ class Lunch extends Model
     }
 
     /**
+     * Calculate the average rating of hygiene
+     *
+     * @return integer
+     */
+    public function averageFoodRating()
+    {
+        $ratings = $this->ratings;
+
+        if (!$ratings->isEmpty()) {
+            $sum = 0;
+
+            foreach ($ratings as $rating) {
+                $sum += $rating->food_quality_rating;
+            }
+            $food_quality_rating = $sum / $ratings->count();
+            return $food_quality_rating;
+        }
+    }
+
+    /**
      * Calculate the average rating on food variety
      *
      * @return integer
@@ -74,10 +74,10 @@ class Lunch extends Model
             $sum = 0;
 
             foreach ($ratings as $rating) {
-                $sum += $rating->food_variations_rating;
+                $sum += $rating->food_variety_rating;
             }
-            $averageVarietyRating = $sum / $ratings->count();
-            return $averageVarietyRating;
+            $food_variety_rating = $sum / $ratings->count();
+            return $food_variety_rating;
         }
     }
 
@@ -93,5 +93,4 @@ class Lunch extends Model
 
         return $averageRating;
     }
-
 }
