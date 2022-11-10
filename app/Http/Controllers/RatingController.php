@@ -67,9 +67,9 @@ class RatingController extends Controller
     public function update(Request $request, Subject $subject, Rating $rating)
     {
         $validated = $request->validate([
-            'subject_rating' => 'required|integer|min:1|max:5',
-            'teacher_rating' => 'required|integer|min:1|max:5',
-            'knowledge_rating' => 'required|integer|min:1|max:5',
+            'subject_rating' => 'required|integer|min:0|max:5',
+            'teacher_rating' => 'required|integer|min:0|max:5',
+            'knowledge_rating' => 'required|integer|min:0|max:5',
             'comment' => 'text',
         ]);
 

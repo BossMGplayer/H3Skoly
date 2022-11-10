@@ -67,9 +67,9 @@ class LunchRatingController extends Controller
         $lunchrating = LunchRating::findOrFail($id);
 
         $validated = $request->validate([
-            'hygiene_rating' => 'required|integer|min:1|max:5',
-            'food_quality_rating' => 'required|integer|min:1|max:5',
-            'food_variety_rating' => 'required|integer|min:1|max:5',
+            'hygiene_rating' => 'required|integer|min:0|max:5',
+            'food_quality_rating' => 'required|integer|min:0|max:5',
+            'food_variety_rating' => 'required|integer|min:0|max:5',
             'comment' => 'text',
         ]);
 
