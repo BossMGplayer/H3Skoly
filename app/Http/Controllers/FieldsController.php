@@ -17,8 +17,8 @@ class FieldsController extends Controller
     public function index()
     {
         //return FieldResource::collection(Field::with('subjects', 'school')->paginate(25));
-
         // Can use the 'school' relation to return the owner school
+
         $field = Field::orderBy('created_at', 'asc')->get();
         return $field;
     }

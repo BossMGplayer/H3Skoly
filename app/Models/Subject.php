@@ -82,14 +82,34 @@ class Subject extends Model
     }
 
     /**
+     * Calculate the average rating on interpretion
+     *
+     * @return integer
+     */
+    public function averageInterpretationRating()
+    {
+        $ratings = $this->ratings;
+
+        if (!$ratings->isEmpty()) {
+            $sum = 0;
+
+            foreach ($ratings as $rating) {
+                $sum += $rating->interpretation_rating;
+            }
+            $averageInterpretionRating = $sum / $ratings->count();
+            return $averageInterpretionRating;
+        }
+    }
+
+    /**
      * Calculate the average rating on a subject
      *
      * @return integer
      */
     public function averageRating()
     {
-        $averageRatingPlace = $this->averageTeacherRating() + $this->averageKnowledgeRating() + $this->averageSubjectRating();
-        $averageRating = $averageRatingPlace/3;
+        $averageRatingPlace = $this->averageTeacherRating() + $this->averageKnowledgeRating() + $this->averageSubjectRating() + $this->averageInterpretationRating();
+        $averageRating = $averageRatingPlace/4;
 
         return $averageRating;
     }

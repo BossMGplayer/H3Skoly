@@ -36,6 +36,8 @@ class RatingController extends Controller
             'subject_rating' => 'required|integer|min:1|max:5',
             'teacher_rating' => 'required|integer|min:1|max:5',
             'knowledge_rating' => 'required|integer|min:1|max:5',
+            'interpretation_rating' => 'required|integer|min:1|max:5',
+
             'comment' => 'text',
             'subject_id' => 'required',
 
@@ -70,6 +72,7 @@ class RatingController extends Controller
             'subject_rating' => 'required|integer|min:0|max:5',
             'teacher_rating' => 'required|integer|min:0|max:5',
             'knowledge_rating' => 'required|integer|min:0|max:5',
+            'interpretation_rating' => 'required|integer|min:0|max:5',
             'comment' => 'text',
         ]);
 

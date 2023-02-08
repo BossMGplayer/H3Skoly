@@ -9,7 +9,7 @@ class Rating extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['subject_id', 'subject_rating', 'knowledge_rating', 'teacher_rating', 'comment'];
+    protected $fillable = ['subject_id', 'subject_rating', 'knowledge_rating', 'teacher_rating', 'comment', 'interpretation_rating'];
 
     public function subject()
     {
