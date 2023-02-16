@@ -20,6 +20,7 @@ class RatingResource extends JsonResource
             'subject_rating' => $this->subject_rating,
             'teacher_rating' => $this->teacher_rating,
             'knowledge_rating' => $this->knowledge_rating,
+            'interpretation_rating' => $this->interpretation_rating,
             'comment' => $this->comment,
             'created_at' => (string) $this->created_at,
             'updated_at' => (string) $this->updated_at,
