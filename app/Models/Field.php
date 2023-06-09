@@ -20,4 +20,25 @@ class Field extends Model
     {
         return $this->belongsTo(School::class);
     }
+
+    /**
+     * Calculate the average rating on a field
+     *
+     * @return integer
+     */
+    public function averageRating()
+    {
+        $associatedSubjects = $this->subjects;
+        $averageRatingPlaceholder = 0;
+
+        if ($associatedSubjects->isNotEmpty()) {
+            foreach ($associatedSubjects as $subject) {
+                $averageRatingPlaceholder += $subject->averageRating();
+            }
+            $averageRating = $averageRatingPlaceholder / $associatedSubjects->count();
+            return $averageRating;
+        }
+
+        return 0;
+    }
 }

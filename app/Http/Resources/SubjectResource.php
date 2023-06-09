@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Arr;
 use App\Models\Subject;
 
 class SubjectResource extends JsonResource
@@ -16,15 +17,20 @@ class SubjectResource extends JsonResource
 
     public function toArray($request)
     {
-        return [
+        $data = [
             'id' => $this->id,
             'name' => $this->name,
             'file_path' => $this->file_path,
             'field_id' => $this->field_id,
             'average_rating' => $this->averageRating(),
-            'ratings' => $this->ratings,
             'created_at' => (string) $this->created_at,
             'updated_at' => (string) $this->updated_at,
         ];
+
+        if ($this->relationLoaded('ratings')) {
+            $data['ratings'] = $this->ratings;
+        }
+
+        return $data;
     }
 }

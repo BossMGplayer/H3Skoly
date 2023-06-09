@@ -12,16 +12,25 @@ class FieldsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        //return FieldResource::collection(Field::with('subjects', 'school')->paginate(25));
-        // Can use the 'school' relation to return the owner school
+        $fields = Field::orderBy('created_at', 'asc')->get();
 
-        $field = Field::orderBy('created_at', 'asc')->get();
-        return $field;
+        $fields->each(function ($field) {
+            $field->average_rating = $field->averageRating();
+            unset($field->subjects);
+        });
+
+        //$averageRating = $fields->avg('average_rating');
+
+        return response()->json([
+            'fields' => $fields
+        ]);
     }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -59,12 +68,19 @@ class FieldsController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Field  $field
-     * @return Field
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(Field $field)
     {
-        return $field->load('subjects');
+        $field->load('subjects');
+        $field->average_rating = $field->averageRating();
+
+        return response()->json([
+            'field' => $field,
+            'average_rating' => $field->average_rating
+        ]);
     }
+
 
     /**
      * Update the specified resource in storage.

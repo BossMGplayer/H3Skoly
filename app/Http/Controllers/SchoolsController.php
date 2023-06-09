@@ -13,15 +13,25 @@ class SchoolsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return School
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        //return SchoolResource::collection(School::with('fields', 'subjects', 'ratings')->paginate(25));
+        $schools = School::orderBy('created_at', 'asc')->get();
 
-        $school = School::orderBy('created_at', 'asc')->get();
-        return $school;
+        $schools->each(function ($school) {
+            $school->average_rating = $school->calculateSchoolRating();
+            unset($school->fields);
+            unset($school->lunch);
+        });
+
+        return response()->json([
+            'schools' => $schools,
+        ]);
     }
+
+
+
 
     public function indexWeb()
     {
@@ -71,9 +81,10 @@ class SchoolsController extends Controller
      */
     public function show(School $school)
     {
-        //return new SchoolResource($school);
+        $school->load('lunch', 'fields');
+        $school->average_rating = $school->calculateSchoolRating();
 
-        return $school->load('lunch','fields');
+        return $school;
     }
 
 

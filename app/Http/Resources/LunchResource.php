@@ -14,7 +14,7 @@ class LunchResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
+        $data = [
             'id' => $this->id,
             'name' => $this->name,
             'file_path' => $this->file_path,
@@ -23,5 +23,11 @@ class LunchResource extends JsonResource
             'created_at' => (string) $this->created_at,
             'updated_at' => (string) $this->updated_at,
         ];
+
+        if ($this->relationLoaded('ratings')) {
+            $data['ratings'] = $this->ratings;
+        }
+
+        return $data;
     }
 }

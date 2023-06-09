@@ -7,6 +7,8 @@ use App\Http\Resources\RatingResource;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class RatingController extends Controller
 {
@@ -32,21 +34,26 @@ class RatingController extends Controller
 
     public function store(Request $request, Subject $subject)
     {
-        $validated = $request->validate([
-            'subject_rating' => 'required|integer|min:1|max:5',
-            'teacher_rating' => 'required|integer|min:1|max:5',
-            'knowledge_rating' => 'required|integer|min:1|max:5',
-            'interpretation_rating' => 'required|integer|min:1|max:5',
-
-            'comment' => 'text',
-            'subject_id' => 'required',
-
-            ['rating' => $request->rating]
-        ]);
+        try {
+            $validated = $request->validate([
+                'subject_rating' => 'required|integer|min:1|max:5',
+                'teacher_rating' => 'required|integer|min:1|max:5',
+                'knowledge_rating' => 'required|integer|min:1|max:5',
+                'interpretation_rating' => 'required|integer|min:1|max:5',
+                'comment' => 'nullable|string',
+                'subject_id' => 'required|integer',
+            ]);
+        } catch (ValidationException $e) {
+            throw new HttpResponseException(response()->json([
+                'message' => 'The given data was invalid.',
+                'errors' => $e->errors(),
+            ], 422));
+        }
 
         $rating = Rating::create($validated);
         return new RatingResource($rating);
     }
+
 
     /**
      * Display the specified resource.

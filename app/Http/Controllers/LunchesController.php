@@ -15,8 +15,20 @@ class LunchesController extends Controller
      */
     public function index()
     {
-        $lunch = Lunch::orderBy('created_at', 'asc')->get();
-        return $lunch;
+        $lunches = Lunch::orderBy('created_at', 'asc')->get();
+        $subjectResources = $lunches->map(function ($lunch) {
+            return [
+                'id' => $lunch->id,
+                'name' => $lunch->name,
+                'file_path' => $lunch->file_path,
+                'school_id' => $lunch->school_id,
+                'average_rating' => $lunch->averageRating(),
+                'created_at' => (string) $lunch->created_at,
+                'updated_at' => (string) $lunch->updated_at,
+            ];
+        });
+
+        return $subjectResources;
     }
 
 
@@ -58,9 +70,12 @@ class LunchesController extends Controller
      * @param  int  $id
      * @return LunchResource
      */
-    public function show(Lunch $lunch)
+    public function show(int $id)
     {
-        return new LunchResource($lunch);
+        $lunch = Lunch::with('ratings')->findOrFail($id);
+        $lunchResource = new LunchResource($lunch);
+
+        return $lunchResource;
     }
 
     /**

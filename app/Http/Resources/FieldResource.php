@@ -19,9 +19,11 @@ class FieldResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'file_path' => $this->file_path,
-            'school_id' => $this->school_id,
+            'school_id' => $this->field_id,
+            'average_rating' => $this->resource->averageRating(),
             'created_at' => (string) $this->created_at,
             'updated_at' => (string) $this->updated_at,
         ];
     }
+
 }

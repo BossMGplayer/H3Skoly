@@ -113,5 +113,4 @@ class Subject extends Model
 
         return $averageRating;
     }
-
 }

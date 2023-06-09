@@ -16,11 +16,22 @@ class SubjectsController extends Controller
      */
     public function index()
     {
-        //return SubjectResource::collection(Subject::with('ratings')->get());
+        $subjects = Subject::orderBy('created_at', 'asc')->get();
+        $subjectResources = $subjects->map(function ($subject) {
+            return [
+                'id' => $subject->id,
+                'name' => $subject->name,
+                'file_path' => $subject->file_path,
+                'field_id' => $subject->field_id,
+                'average_rating' => $subject->averageRating(),
+                'created_at' => (string) $subject->created_at,
+                'updated_at' => (string) $subject->updated_at,
+            ];
+        });
 
-        $subject = Subject::orderBy('created_at', 'asc')->get();
-        return $subject;
+        return $subjectResources;
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -60,10 +71,12 @@ class SubjectsController extends Controller
      * @param  int  $id
      * @return SubjectResource
      */
-    public function show(Subject $subject)
+    public function show(int $id)
     {
-        //return $subject->load('ratings');
-        return new SubjectResource($subject);
+        $subject = Subject::with('ratings')->findOrFail($id);
+        $subjectResource = new SubjectResource($subject);
+
+        return $subjectResource;
     }
 
     /**
